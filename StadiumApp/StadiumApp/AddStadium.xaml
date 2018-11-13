@@ -1,0 +1,17 @@
+﻿<Window x:Class="StadiumApp.AddStadium"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StadiumApp"
+        mc:Ignorable="d"
+        Title="AddStadium" Height="434.155" Width="391.197" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,-2">
+        <Label Content="Ad" HorizontalAlignment="Left" Margin="84,139,0,0" VerticalAlignment="Top" Width="126" Height="36"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="24" Margin="84,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209"/>
+        <Label Content="Telefon" HorizontalAlignment="Left" Margin="84,209,0,0" VerticalAlignment="Top" Height="28" Width="126"/>
+        <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Height="24" Margin="84,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209"/>
+        <Button x:Name="btnAddStadium" Content="Əlave et" HorizontalAlignment="Left" Margin="84,288,0,0" VerticalAlignment="Top" Width="209" Height="45" Click="btnAddStadium_Click"/>
+        <ComboBox x:Name="cmb" HorizontalAlignment="Left" Margin="84,90,0,0" VerticalAlignment="Top" Width="209"/>
+    </Grid>
+</Window>

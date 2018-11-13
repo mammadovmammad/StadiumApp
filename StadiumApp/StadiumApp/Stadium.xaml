@@ -5,16 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StadiumApp"
         mc:Ignorable="d"
-        Title="Stadion" Height="614.179" Width="1030.826" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Stadion" Height="614.179" Width="1433.224" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowState="Maximized">
     <Grid>
-        <Label Content="Tarix seçin" HorizontalAlignment="Left" Margin="33,52,0,0" Width="122" Height="27" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-        <DatePicker x:Name="dtpPlayTime" Margin="33,79,0,0" Width="192" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left"/>
-        <Label Content="Stadion seçin" HorizontalAlignment="Left" Margin="33,113,0,0" Width="83" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-        <ComboBox x:Name="cmbStadiums" HorizontalAlignment="Left" Margin="33,139,0,0" Width="192" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-        <Label Content="Saat seçin" HorizontalAlignment="Left" Margin="33,178,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-        <ComboBox x:Name="cmbHours" HorizontalAlignment="Left" Margin="33,204,0,0" Width="192" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-        <Label Content="Şəxs seçin" HorizontalAlignment="Left" Margin="33,244,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cmbContacts" HorizontalAlignment="Left" Margin="33,270,0,0" VerticalAlignment="Top" Width="192" />
-        <Button x:Name="btnAddContact" Content="Əlavə et" HorizontalAlignment="Left" Margin="230,270,0,0" VerticalAlignment="Top" Width="54" Height="23" Click="btnAddContact_Click"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Image/Stadium.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Label Content="Tarix seçin" HorizontalAlignment="Left" Margin="178,42,0,0" Width="128" Height="29" VerticalAlignment="Top" VerticalContentAlignment="Center" Foreground="White"/>
+        <DatePicker x:Name="dtpPlayTime" Margin="178,71,0,0" Width="202" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" SelectedDateChanged="dtpPlayTime_SelectedDateChanged" Height="26"/>
+        <Label x:Name="lblStadium" Content="Stadion seçin" Visibility="Hidden" HorizontalAlignment="Left" Margin="178,180,0,0" Width="87" VerticalAlignment="Top" VerticalContentAlignment="Center" Foreground="White" Height="30"/>
+        <ComboBox x:Name="cmbStadiums" Visibility="Hidden" HorizontalAlignment="Left" Margin="178,209,0,0" Width="202" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26"/>
+        <Label Content="Saat seçin"  HorizontalAlignment="Left" Margin="178,108,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Foreground="White" Height="28" Width="66"/>
+        <ComboBox x:Name="cmbHours" HorizontalAlignment="Left" Margin="178,136,0,0" Width="202" VerticalAlignment="Top" VerticalContentAlignment="Center" SelectionChanged="cmbHours_SelectionChanged" Height="25"/>
+        <Label x:Name="lblContact" Content="Şəxs seçin" Visibility="Hidden" HorizontalAlignment="Left" Margin="178,250,0,0" VerticalAlignment="Top" Foreground="White" Height="28" Width="66"/>
+        <ComboBox x:Name="cmbContacts" Visibility="Hidden" HorizontalAlignment="Left" Margin="178,278,0,0" VerticalAlignment="Top" Width="202" Height="26" />
+        <Button x:Name="btnAddContact" Visibility="Hidden" Content="Əlavə et" HorizontalAlignment="Left" Margin="386,278,0,0" VerticalAlignment="Top" Width="57" Height="26" Click="btnAddContact_Click"/>
+        <DataGrid HorizontalAlignment="Left" Height="233" Margin="488,71,0,0" VerticalAlignment="Top" Width="620" RenderTransformOrigin="0.492,0.774"/>
+        <Button x:Name="BtnAddStadium" Visibility="Hidden" Content="Əlavə et" HorizontalAlignment="Left" Margin="386,209,0,0" VerticalAlignment="Top" Width="57" Height="26" Click="BtnAddStadium_Click"/>
     </Grid>
 </Window>

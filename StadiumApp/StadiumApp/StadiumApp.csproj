@@ -67,10 +67,17 @@
     <Compile Include="AddContact.xaml.cs">
       <DependentUpon>AddContact.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddStadium.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Stadium.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddStadium.xaml.cs">
+      <DependentUpon>AddStadium.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Bookings.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
@@ -147,6 +154,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\Stadium.jpg" />
     <Content Include="Models\Database.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Database.edmx</DependentUpon>

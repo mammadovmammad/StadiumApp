@@ -21,3 +21,5 @@ C:\Users\Mamed\source\repos\StadiumApp\StadiumApp\obj\Debug\Stadium.baml
 C:\Users\Mamed\source\repos\StadiumApp\StadiumApp\obj\Debug\AddContact.g.cs
 C:\Users\Mamed\source\repos\StadiumApp\StadiumApp\obj\Debug\AddContact.baml
 C:\Users\Mamed\source\repos\StadiumApp\StadiumApp\obj\Debug\StadiumApp.csprojAssemblyReference.cache
+C:\Users\Mamed\source\repos\StadiumApp\StadiumApp\obj\Debug\AddStadium.g.cs
+C:\Users\Mamed\source\repos\StadiumApp\StadiumApp\obj\Debug\AddStadium.baml

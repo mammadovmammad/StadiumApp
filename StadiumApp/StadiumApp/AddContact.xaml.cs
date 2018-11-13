@@ -22,14 +22,16 @@ namespace StadiumApp
     {
         //Connection database
         FootballStadiumEntities1 db = new FootballStadiumEntities1();
-        public AddContact()
+        Stadium stadium;
+        public AddContact(Stadium sta)
         {
+            stadium = sta;
             InitializeComponent();
             fillFullname();
         }
         
         // Full name for Combobox to list from database
-        private void fillFullname()
+        public void fillFullname()
         {
             foreach (Contacts contact in db.Contacts.ToList())
             {
@@ -38,21 +40,21 @@ namespace StadiumApp
                     Id = contact.Id,
                     All = contact.Name + " " + contact.Surname + " " + contact.Phone
                 };
-                cmbContact.Items.Add(fullname);
 
-                
+                cmbContact.Items.Add(fullname);
+  
             }
         }
 
         // Add Contact to contact combobox 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            cmbContact.Items.Clear();
-            if (string.IsNullOrEmpty(txtName.Text))
+            if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtSurname.Text) || string.IsNullOrEmpty(txtPhone.Text))
             {
                 MessageBox.Show("Sahələr boş buraxıla bilməz");
                 return;
             }
+            cmbContact.Items.Clear();
             Contacts contacts = new Contacts
             {
                 Name = txtName.Text,
@@ -67,11 +69,13 @@ namespace StadiumApp
             txtSurname.Text = "";
             txtPhone.Text = "";
             fillFullname();
+
         }
 
         // Fill selected contact to textbox
         private void cmbContact_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            
             Fullname fullname = cmbContact.SelectedItem as Fullname;
             Contacts contact = db.Contacts.Find(fullname.Id);
             if (contact != null)
@@ -80,8 +84,12 @@ namespace StadiumApp
                 txtSurname.Text = contact.Surname;
                 txtPhone.Text = contact.Phone;
             }
-            fillFullname();
+        }
 
+        //Fill contact data to main Form when close Addcontact form
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            stadium.fillContacts();
         }
     }
 }
