@@ -26,13 +26,10 @@ namespace StadiumApp
         //Connection database 
         FootballStadiumEntities1 db = new FootballStadiumEntities1();
 
-        TimeSpan StartTime = new TimeSpan(10, 0, 0);
-        TimeSpan EndTime = new TimeSpan(2, 0, 0);
+       
         public Stadium()
         {
             InitializeComponent();
-            fillContacts();
-            
         }
         
         //Fill contacts to checkbox to mainWindow from database
@@ -55,7 +52,7 @@ namespace StadiumApp
         //Show AddStadiumForm
         private void BtnAddStadium_Click(object sender, RoutedEventArgs e)
         {
-            AddStadium addStadium = new AddStadium();
+            AddStadium addStadium = new AddStadium(this);
             addStadium.ShowDialog();
         }
         
@@ -68,9 +65,9 @@ namespace StadiumApp
 
             //cmbContacts.Visibility = Visibility.Hidden;
             //cmbStadiums.Visibility = Visibility.Hidden;
-            
-            
 
+            TimeSpan StartTime = new TimeSpan(10, 0, 0);
+            TimeSpan EndTime = new TimeSpan(2, 0, 0);
             int interval = (int)(EndTime.Subtract(StartTime).TotalHours + 24);
             
             for (int i = 0; i < interval; i++)
@@ -95,17 +92,22 @@ namespace StadiumApp
     }
 
         //Fill stadiums to stadium checkbox from database
-        private void fillStadiums()
+        public void fillStadiums()
         {
             cmbStadiums.Items.Clear();
+
             Stadiums stad = db.Stadiums.FirstOrDefault(s => s.Name == cmbStadiums.Text);
             DateTime date = dtpPlayTime.SelectedDate.Value;
-            foreach (Stadiums std in db.Stadiums.ToList())
+
+            if (cmbHours.SelectedItem!=null)
             {
-                cmbStadiums.Items.Add(std.Name + " " + std.Phone);
-                
-                int count = db.Bookings.Where(b => /*b.StadiumId == stad.Id &&*/ b.Date == date.Date && b.Time == StartTime).Count();
-                MessageBox.Show(count.ToString());
+                string hour = cmbHours.SelectedItem.ToString();
+                TimeSpan time = TimeSpan.Parse(hour);
+
+                foreach (Stadiums std in db.Stadiums.Where(s => s.Bookings.Where(b => b.Date == date && b.Time == time).Count() == 0).ToList())
+                {
+                    cmbStadiums.Items.Add(std.Name);
+                }
             }
             
         }
@@ -113,7 +115,9 @@ namespace StadiumApp
         //Show available hours when select date from DatePicker
         private void dtpPlayTime_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            cmbHours.Items.Clear();
             FillHours();
+            
         }
 
         //Show available stadiums when select hour from combobox
@@ -131,6 +135,11 @@ namespace StadiumApp
                 lblContact.Visibility = Visibility.Visible;
                 lblStadium.Visibility = Visibility.Visible;
             }
+        }
+
+        private void btnBooking_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

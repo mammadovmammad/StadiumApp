@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StadiumApp"
         mc:Ignorable="d"
-        Title="AddStadium" Height="434.155" Width="391.197" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AddStadium" Height="334.724" Width="326.196" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,0,-2">
-        <Label Content="Ad" HorizontalAlignment="Left" Margin="84,139,0,0" VerticalAlignment="Top" Width="126" Height="36"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="24" Margin="84,180,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209"/>
-        <Label Content="Telefon" HorizontalAlignment="Left" Margin="84,209,0,0" VerticalAlignment="Top" Height="28" Width="126"/>
-        <TextBox x:Name="txtPhone" HorizontalAlignment="Left" Height="24" Margin="84,242,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209"/>
-        <Button x:Name="btnAddStadium" Content="Əlave et" HorizontalAlignment="Left" Margin="84,288,0,0" VerticalAlignment="Top" Width="209" Height="45" Click="btnAddStadium_Click"/>
-        <ComboBox x:Name="cmb" HorizontalAlignment="Left" Margin="84,90,0,0" VerticalAlignment="Top" Width="209"/>
+        <Label Content="Ad" HorizontalAlignment="Left" Margin="57,130,0,0" VerticalAlignment="Top" Width="46" Height="26"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="24" Margin="57,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209"/>
+        <Button x:Name="btnAddStadium" Content="Əlave et" HorizontalAlignment="Left" Margin="57,209,0,0" VerticalAlignment="Top" Width="209" Height="45" Click="btnAddStadium_Click"/>
+        <ComboBox x:Name="cmbStadium" HorizontalAlignment="Left" Margin="57,103,0,0" VerticalAlignment="Top" Width="209" 
+            ItemsSource="{Binding Stadiums}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Id"
+            SelectedValue="{Binding Stadiums}" SelectionChanged="cmbStadium_SelectionChanged_1"/>
+        <Label Content="Stadion Əlavə et" HorizontalAlignment="Left" Margin="76,43,0,0" VerticalAlignment="Top" FontSize="22"/>
     </Grid>
 </Window>

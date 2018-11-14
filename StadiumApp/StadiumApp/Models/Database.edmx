@@ -32,7 +32,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <Association Name="FK_Bookings_Contacts">
           <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
@@ -105,7 +104,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_Stadiums" FromRole="Stadiums" ToRole="Bookings" />
         </EntityType>
         <Association Name="FK_Bookings_Contacts">
@@ -179,7 +177,6 @@
               <MappingFragment StoreEntitySet="Stadiums">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -27,7 +27,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <Association Name="FK_Bookings_Contacts">
     <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
