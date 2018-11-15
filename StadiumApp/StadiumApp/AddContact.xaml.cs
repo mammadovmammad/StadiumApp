@@ -54,6 +54,14 @@ namespace StadiumApp
                 MessageBox.Show("Sahələr boş buraxıla bilməz");
                 return;
             }
+
+            if (db.Contacts.FirstOrDefault(c=>c.Phone==txtPhone.Text)!=null)
+            {
+                MessageBox.Show("Bu nömrə ilə qeydiyyat mövcuddur!");
+                return;
+            }
+
+
             cmbContact.Items.Clear();
             Contacts contacts = new Contacts
             {
@@ -61,9 +69,13 @@ namespace StadiumApp
                 Surname = txtSurname.Text,
                 Phone = txtPhone.Text
             };
+
+            
            
             db.Contacts.Add(contacts);
             db.SaveChanges();
+
+            MessageBox.Show("İstifadəçi əlavə edildi!");
             
             txtName.Text = "";
             txtSurname.Text = "";

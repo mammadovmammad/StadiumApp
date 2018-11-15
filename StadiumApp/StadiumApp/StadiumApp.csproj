@@ -107,6 +107,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\VwBooking.cs" />
     <Compile Include="Stadium.xaml.cs">
       <DependentUpon>Stadium.xaml</DependentUpon>
       <SubType>Code</SubType>

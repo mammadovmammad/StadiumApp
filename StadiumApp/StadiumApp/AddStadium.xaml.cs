@@ -44,24 +44,33 @@ namespace StadiumApp
         //Add stadium data to database when click addButton
         private void btnAddStadium_Click(object sender, RoutedEventArgs e)
         {
+            
+            if (db.Stadiums.FirstOrDefault(s=>s.Name==txtName.Text)!=null)
+            {
+                MessageBox.Show("Artıq bu adda stadion əlavə olunub!");
+                return;
+            }
+
+            txtName.Text = "";
             cmbStadium.Items.Clear();
             Stadiums stadium = new Stadiums
             {
-                Name = txtName.Text,
+                Name = txtName.Text
                
             };
 
             db.Stadiums.Add(stadium);
             db.SaveChanges();
+
+            MessageBox.Show("Stadion əlavə edildi!");
+
             this.stadium.fillStadiums();
             txtName.Text = "";
             fillStadiums();
             
             
         }
-
-
-
+        
         private void cmbStadium_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             Stadiums stadium = cmbStadium.SelectedItem as Stadiums;
