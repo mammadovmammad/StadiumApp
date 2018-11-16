@@ -11,7 +11,7 @@
             <ImageBrush ImageSource="/Image/Stadium.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         <Label Content="Tarix seçin" HorizontalAlignment="Left" Margin="178,42,0,0" Width="128" Height="29" VerticalAlignment="Top" VerticalContentAlignment="Center" Foreground="White"/>
-        <DatePicker x:Name="dtpPlayTime" Margin="178,71,0,0" Width="202" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" SelectedDateChanged="dtpPlayTime_SelectedDateChanged" Height="26"/>
+        <DatePicker x:Name="dtpPlayTime" Margin="178,71,0,0" Width="202" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" HorizontalAlignment="Left" SelectedDateChanged="dtpPlayTime_SelectedDateChanged" Height="26" />
         <Label x:Name="lblStadium" Content="Stadion seçin" Visibility="Hidden" HorizontalAlignment="Left" Margin="178,180,0,0" Width="87" VerticalAlignment="Top" VerticalContentAlignment="Center" Foreground="White" Height="30"/>
         <ComboBox x:Name="cmbStadiums" Visibility="Hidden" HorizontalAlignment="Left" Margin="178,209,0,0" Width="202" VerticalAlignment="Top" VerticalContentAlignment="Center" Height="26"/>
         <Label Content="Saat seçin"  HorizontalAlignment="Left" Margin="178,108,0,0" VerticalAlignment="Top" VerticalContentAlignment="Center" Foreground="White" Height="28" Width="66"/>

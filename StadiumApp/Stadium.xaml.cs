@@ -33,6 +33,7 @@ namespace StadiumApp
             InitializeComponent();
             fillSearchHours();
             fillSearchStadiums();
+            dtpPlayTime.DisplayDateStart = DateTime.Today;
         }
 
         private void ClearComponent()
@@ -52,6 +53,8 @@ namespace StadiumApp
                 cmbContacts.Items.Add(contacts.Name+" "+contacts.Surname+" "+ contacts.Phone);
             }
         }
+
+      
 
         //Show AddContactForm 
         private void btnAddContact_Click(object sender, RoutedEventArgs e)
@@ -232,8 +235,10 @@ namespace StadiumApp
                 Id = 0,
                 Name = "Hamisi"
             };
-
+           
             cmbSearchStadium.Items.Add(all);
+            cmbSearchStadium.SelectedValuePath = "0";
+
             foreach (Stadiums std in db.Stadiums.ToList())
             {
                 cmbSearchStadium.Items.Add(std);
@@ -247,7 +252,7 @@ namespace StadiumApp
 
             int stadiumId = 0;
 
-            if (!string.IsNullOrEmpty(cmbSearchStadium.Text))
+            if (!string.IsNullOrEmpty(cmbSearchStadium.Text)&&cmbSearchStadium.Text!= "Hamisi")
             {
                 stadiumId = db.Stadiums.FirstOrDefault(s => s.Name == cmbSearchStadium.Text).Id;
             }
@@ -262,18 +267,18 @@ namespace StadiumApp
             //if (cmbSearchHour.SelectedItem != null)
             //{
 
-    //            TimeSpan time;
-    //        if (!TimeSpan.TryParse("07:35", out time))
-    //        {
-    //// handle validation error
-    //        }
-                //string hour = cmbHours.SelectedItem.ToString();
-                //MessageBox.Show(hour);
-                //TimeSpan time = TimeSpan.Parse(hour);
+            //            TimeSpan time;
+            //        if (!TimeSpan.TryParse("07:35", out time))
+            //        {
+            //// handle validation error
+            //}
+            //        }
+            //string hour = cmbHours.SelectedItem.ToString();
+            //MessageBox.Show(hour);
+            //TimeSpan time = TimeSpan.Parse(hour);
 
-                List<Bookings> bookings = db.Bookings.Where(b => b.Date == dtpSearchDate.SelectedDate.Value && (stadiumId != 0 ? b.StadiumId == stadiumId : true)/* && (b.Time == time)*/).ToList();
-
-                //MessageBox.Show(cmbSearchHour.SelectedValue.ToString());
+            List<Bookings> bookings = db.Bookings.Where(b => b.Date == dtpSearchDate.SelectedDate.Value && (stadiumId != 0 ? b.StadiumId == stadiumId : true)/* && (b.Time == time)*/).ToList();
+            
                 foreach (Bookings item in bookings.Where(b => b.Date == dtpSearchDate.SelectedDate.Value))
                 {
                     VwBooking booking = new VwBooking
@@ -286,7 +291,7 @@ namespace StadiumApp
                     };
                     dgBooking.Items.Add(booking);
 
-                //}
+                
             }
         }
         
