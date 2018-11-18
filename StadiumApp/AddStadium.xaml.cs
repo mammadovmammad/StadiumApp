@@ -24,7 +24,6 @@ namespace StadiumApp
         FootballStadiumEntities1 db = new FootballStadiumEntities1();
 
         Stadium stadium;
-
         public Stadiums selecstad;
         public AddStadium(Stadium main)
         {
@@ -33,6 +32,7 @@ namespace StadiumApp
             this.stadium=main;
         }
 
+        //Fill stadiums to stadium combobox from database
         private void fillStadiums()
         {
             foreach (Stadiums stadium in db.Stadiums.ToList())
@@ -44,7 +44,6 @@ namespace StadiumApp
         //Add stadium data to database when click addButton
         private void btnAddStadium_Click(object sender, RoutedEventArgs e)
         {
-            
             if (db.Stadiums.FirstOrDefault(s=>s.Name==txtName.Text)!=null)
             {
                 MessageBox.Show("Artıq bu adda stadion əlavə olunub!");
@@ -70,7 +69,8 @@ namespace StadiumApp
             
             
         }
-        
+
+        // Fill selected stadium text to textbox
         private void cmbStadium_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             Stadiums stadium = cmbStadium.SelectedItem as Stadiums;

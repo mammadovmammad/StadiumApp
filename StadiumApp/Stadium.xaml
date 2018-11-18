@@ -32,11 +32,7 @@
         <Button x:Name="btnBooking" Visibility="Hidden" Content="Rezerv et" HorizontalAlignment="Left" Margin="178,309,0,0" VerticalAlignment="Top" Width="202" Height="38" Click="btnBooking_Click"/>
         <Button x:Name="btnUpdateDeleteStadium" Visibility="Hidden" Content="Yenilə/Sil" HorizontalAlignment="Left" Margin="448,209,0,0" VerticalAlignment="Top" Width="61" Height="26"/>
         <Button x:Name="btnUpdateDeleteContact" Visibility="Hidden" Content="Yenilə/Sil" HorizontalAlignment="Left" Margin="448,278,0,0" VerticalAlignment="Top" Width="61" Height="26"/>
-        <ComboBox x:Name="cmbSearchHour" HorizontalAlignment="Left" Margin="803,71,0,0" VerticalAlignment="Top" Width="120" Height="22"
-                  ItemsSource="{Binding Path=Bookings}"
-            DisplayMemberPath="Time"
-            SelectedValuePath="Id"
-            SelectedValue="{Binding Path=Bookings}"/>
+        <ComboBox x:Name="cmbSearchHour" HorizontalAlignment="Left" Margin="803,71,0,0" VerticalAlignment="Top" Width="120" Height="22"/>
         <ComboBox x:Name="cmbSearchStadium" HorizontalAlignment="Left" Margin="949,71,0,0" VerticalAlignment="Top" Width="120"
                   ItemsSource="{Binding Path=Stadiums}"
             DisplayMemberPath="Name"
@@ -49,7 +45,7 @@
         <Label Content="Stadion seçin" HorizontalAlignment="Left" Margin="949,44,0,0" VerticalAlignment="Top" Width="120" Foreground="White"/>
         <Label Content="Qeydiyyat" HorizontalAlignment="Left" Margin="192,5,0,0" VerticalAlignment="Top" Width="114" Foreground="White" FontSize="20"/>
         <Label Content="Axtarış" HorizontalAlignment="Left" Margin="651,5,0,0" VerticalAlignment="Top" Width="86" Foreground="White" FontSize="20" RenderTransformOrigin="1.46,0.897"/>
-        <Button Content="Hesabat" HorizontalAlignment="Left" Margin="580,367,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button x:Name="btnMonthlyResult" Content="Hesabat" HorizontalAlignment="Left" Margin="580,367,0,0" VerticalAlignment="Top" Width="75" Click="btnMonthlyResult_Click_1"/>
         <Label x:Name="lblMonthlyPrice" Content="" HorizontalAlignment="Left" Margin="739,364,0,0" VerticalAlignment="Top" Width="65" Foreground="White"/>
         <Label Content="Aylıq gəlir:" HorizontalAlignment="Left" Margin="674,364,0,0" VerticalAlignment="Top" Width="81" Foreground="White"/>
     </Grid>

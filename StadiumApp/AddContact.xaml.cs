@@ -61,7 +61,6 @@ namespace StadiumApp
                 return;
             }
 
-
             cmbContact.Items.Clear();
             Contacts contacts = new Contacts
             {
@@ -69,8 +68,6 @@ namespace StadiumApp
                 Surname = txtSurname.Text,
                 Phone = txtPhone.Text
             };
-
-            
            
             db.Contacts.Add(contacts);
             db.SaveChanges();
@@ -81,13 +78,11 @@ namespace StadiumApp
             txtSurname.Text = "";
             txtPhone.Text = "";
             fillFullname();
-
         }
 
-        // Fill selected contact to textbox
+        // Fill selected contact text to textbox
         private void cmbContact_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            
             Fullname fullname = cmbContact.SelectedItem as Fullname;
             Contacts contact = db.Contacts.Find(fullname.Id);
             if (contact != null)

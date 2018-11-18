@@ -72,36 +72,12 @@ namespace StadiumApp
         //Fill Avaible Play Hours to combobox from database
         private void FillHours()
         {
-            //cmbHours.Items.Clear();
-            //cmbHours.Text = "";
-            //cmbContacts.Items.Clear();
-
-            //cmbContacts.Visibility = Visibility.Hidden;
-            //cmbStadiums.Visibility = Visibility.Hidden;
-
             TimeSpan StartTime = new TimeSpan(10, 0, 0);
             TimeSpan EndTime = new TimeSpan(2, 0, 0);
             int interval = (int)(EndTime.Subtract(StartTime).TotalHours + 24);
 
             for (int i = 0; i < interval; i++)
             {
-                Bookings allbooking = new Bookings
-                {
-                    Id = 0,
-                    Time = new TimeSpan(24)
-                };
-
-                cmbSearchHour.Items.Add(allbooking);
-                cmbSearchStadium.SelectedValuePath = "0";
-
-                //int count = db.Bookings.Where(b => b.Date == date.Date && b.Time == StartTime).Count();
-                //if (count == 0)
-                //{
-
-                //   cmbHours.Items.Add(StartTime.ToString(@"hh\:mm"));
-
-                //}
-
                 cmbHours.Items.Add(StartTime.ToString(@"hh\:mm"));
                 StartTime = StartTime.Add(new TimeSpan(1, 0, 0));
 
@@ -112,7 +88,7 @@ namespace StadiumApp
             }
         }
 
-        //Fill stadiums to stadium checkbox from database
+        //Fill stadiums to stadium combobox from database
         public void fillStadiums()
         {
             cmbStadiums.Items.Clear();
@@ -136,19 +112,13 @@ namespace StadiumApp
         //Fill hours to search combobox 
         private void fillSearchHours()
         {
-            cmbSearchHour.Items.Add("Hamisi");
-            cmbSearchHour.SelectedIndex = 0;
-
             TimeSpan StartTime = new TimeSpan(10, 0, 0);
             TimeSpan EndTime = new TimeSpan(2, 0, 0);
             int interval = (int)(EndTime.Subtract(StartTime).TotalHours + 24);
 
             for (int i = 0; i < interval; i++)
             {
-                
-
                 cmbSearchHour.Items.Add(StartTime.ToString(@"hh\:mm"));
-                //cmbSearchHour.SelectedValuePath = "0";
                 StartTime = StartTime.Add(new TimeSpan(1, 0, 0));
 
                 if (StartTime.Hours == 0)
@@ -156,8 +126,6 @@ namespace StadiumApp
                     StartTime = new TimeSpan(0, 0, 0);
                 }
             }
-
-           
         }
 
         //Fill rezerved stadiums to search combobox
@@ -168,7 +136,7 @@ namespace StadiumApp
             Stadiums all = new Stadiums
             {
                 Id = 0,
-                Name = "Hamisi"
+                Name = "Hamısı"
             };
 
             cmbSearchStadium.Items.Add(all);
@@ -178,7 +146,6 @@ namespace StadiumApp
             {
                 cmbSearchStadium.Items.Add(std);
             }
-
         }
         
         #endregion
@@ -228,11 +195,10 @@ namespace StadiumApp
             
             db.Bookings.Add(booking);
             db.SaveChanges();
-            //FillHours();
+
             ClearComponent();
             HideComponents();
         }
-        
 
         // Finding reserved games by stadium and time
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -245,34 +211,8 @@ namespace StadiumApp
             {
                 stadiumId = db.Stadiums.FirstOrDefault(s => s.Name == cmbSearchStadium.Text).Id;
             }
-
-            TimeSpan alltime = TimeSpan.Parse(cmbSearchHour.Text);
-
-
             
-            
-
-
-
-            
-
-            //string format = @"hh\:mm";
-            //Bookings time = db.Bookings.FirstOrDefault();
-
-            //DateTime added = Convert.ToDateTime(row["added"].ToString());
-            //string formatted = added.toString("yyyy-MM-dd HH:mm:ss");
-
-            //if (cmbSearchHour.SelectedItem != null)
-            //{
-
-            //            TimeSpan time;
-            //        if (!TimeSpan.TryParse("07:35", out time))
-            //        {
-            //// handle validation error
-            //}
-            //        }
             string hour = cmbSearchHour.SelectedItem.ToString();
-            
             TimeSpan time = TimeSpan.Parse(hour);
 
             List<Bookings> bookings = db.Bookings.Where(b => b.Date == dtpSearchDate.SelectedDate.Value && (stadiumId != 0 ? b.StadiumId == stadiumId : true) && (b.Time == time)).ToList();
@@ -288,11 +228,26 @@ namespace StadiumApp
                     Contact = item.Contacts.Name + " " + item.Contacts.Surname
                 };
                 dgBooking.Items.Add(booking);
-
-
             }
         }
 
+        //Show monthly price by selected date 
+        private void btnMonthlyResult_Click_1(object sender, RoutedEventArgs e)
+        {
+            DateTime currentDate = dtpSearchDate.SelectedDate.Value;
+            int price = 30;
+            int isPlayed = 0;
+
+            foreach (Bookings item in db.Bookings.ToList())
+            {
+                if (item.Date.Month == currentDate.Month && item.IsPlayed == true)
+                {
+                    isPlayed++;
+                }
+            }
+
+            lblMonthlyPrice.Content = (price * isPlayed + " Azn").ToString();
+        }
         #endregion
 
         #region Selected Change 
@@ -302,7 +257,6 @@ namespace StadiumApp
         {
             cmbHours.Items.Clear();
             FillHours();
-
         }
 
         //Show available stadiums when select hour from combobox
@@ -334,37 +288,7 @@ namespace StadiumApp
         {
             btnBooking.Visibility = Visibility.Visible;
         }
-
         #endregion
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            Contacts contact = cmbContacts.SelectedValue as Contacts;
-            MessageBox.Show(contact.Id.ToString());
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-            int price = 30;
-            DateTime currenDate = dtpSearchDate.SelectedDate.Value;
-            int isPlayed = 0;
-
-            foreach (Bookings item in db.Bookings.ToList())
-            {
-                if (item.Date.Month==currenDate.Month&&item.IsPlayed==true)
-                {
-                    isPlayed++;
-                }
-            }
-
-            lblMonthlyPrice.Content =  (price* isPlayed + " Azn").ToString();
-
-
-              
-            
-        }
     }
 }
