@@ -48,5 +48,6 @@
         <Button x:Name="btnMonthlyResult" Content="Hesabat" HorizontalAlignment="Left" Margin="580,367,0,0" VerticalAlignment="Top" Width="75" Click="btnMonthlyResult_Click_1"/>
         <Label x:Name="lblMonthlyPrice" Content="" HorizontalAlignment="Left" Margin="739,364,0,0" VerticalAlignment="Top" Width="65" Foreground="White"/>
         <Label Content="Aylıq gəlir:" HorizontalAlignment="Left" Margin="674,364,0,0" VerticalAlignment="Top" Width="81" Foreground="White"/>
+        <Button x:Name="btnUpdateShortCut" Content="Yenilə" Visibility="Hidden" HorizontalAlignment="Left" Margin="386,278,0,0" VerticalAlignment="Top" Width="57" Height="26"/>
     </Grid>
 </Window>

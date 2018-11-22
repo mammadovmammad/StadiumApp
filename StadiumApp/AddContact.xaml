@@ -23,6 +23,7 @@
                   />
 
         <Label Content="Yeni istifadəçi" HorizontalAlignment="Left" Margin="27,124,0,0" VerticalAlignment="Top" Width="153" FontSize="22"/>
-        <Button x:Name="btnAdd" Content="Əlavə et" HorizontalAlignment="Left" Margin="150,464,0,-99" VerticalAlignment="Top" Width="139" Height="55" Click="btnAdd_Click"/>
+        <Button x:Name="btnAdd" Content="Əlavə et" HorizontalAlignment="Left" Margin="142,464,0,0" VerticalAlignment="Top" Width="139" Height="55" Click="btnAdd_Click"/>
+        <Button x:Name="btnUpdate" Content="Yenilə" Visibility="Hidden" HorizontalAlignment="Left" Margin="142,464,0,0" VerticalAlignment="Top" Width="139" Click="btnUpdate_Click" Height="55"/>
     </Grid>
 </Window>

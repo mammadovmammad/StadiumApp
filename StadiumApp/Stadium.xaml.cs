@@ -180,7 +180,6 @@ namespace StadiumApp
                 date = date.AddDays(1);
             }
 
-
             Bookings booking = new Bookings
             {
                 StadiumId = db.Stadiums.FirstOrDefault(s => s.Name == cmbStadiums.Text).Id,
@@ -190,14 +189,21 @@ namespace StadiumApp
                 Price = dec
             };
 
-            MessageBox.Show("Qeydiyyat tamamlandı!");
+            if (string.IsNullOrEmpty(cmbContacts.Text))
+            {
+                MessageBox.Show("Şəxs seçməlisiniz!");
+                return;
+            }
 
+            MessageBox.Show("Qeydiyyat tamamlandı!");
             
             db.Bookings.Add(booking);
             db.SaveChanges();
 
             ClearComponent();
             HideComponents();
+
+            btnAddContact.Content = "Əlavə et";
         }
 
         // Finding reserved games by stadium and time
@@ -283,11 +289,14 @@ namespace StadiumApp
             btnAddContact.Visibility = Visibility.Visible;
         }
 
-        //Show booking button when select stadium from combobox
+        //Show buttons when select stadium from combobox
         private void cmbContacts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            btnAddContact.Content = "Yenilə";
+           
             btnBooking.Visibility = Visibility.Visible;
         }
+
         #endregion
 
     }

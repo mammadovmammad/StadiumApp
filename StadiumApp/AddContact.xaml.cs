@@ -29,7 +29,7 @@ namespace StadiumApp
             InitializeComponent();
             fillFullname();
         }
-        
+
         // Full name for Combobox to list from database
         public void fillFullname()
         {
@@ -42,7 +42,7 @@ namespace StadiumApp
                 };
 
                 cmbContact.Items.Add(fullname);
-  
+
             }
         }
 
@@ -55,7 +55,7 @@ namespace StadiumApp
                 return;
             }
 
-            if (db.Contacts.FirstOrDefault(c=>c.Phone==txtPhone.Text)!=null)
+            if (db.Contacts.FirstOrDefault(c => c.Phone == txtPhone.Text) != null)
             {
                 MessageBox.Show("Bu nömrə ilə qeydiyyat mövcuddur!");
                 return;
@@ -68,12 +68,12 @@ namespace StadiumApp
                 Surname = txtSurname.Text,
                 Phone = txtPhone.Text
             };
-           
+
             db.Contacts.Add(contacts);
             db.SaveChanges();
 
             MessageBox.Show("İstifadəçi əlavə edildi!");
-            
+
             txtName.Text = "";
             txtSurname.Text = "";
             txtPhone.Text = "";
@@ -83,6 +83,7 @@ namespace StadiumApp
         // Fill selected contact text to textbox
         private void cmbContact_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
+            btnUpdate.Visibility = Visibility.Visible;
             Fullname fullname = cmbContact.SelectedItem as Fullname;
             Contacts contact = db.Contacts.Find(fullname.Id);
             if (contact != null)
@@ -98,6 +99,35 @@ namespace StadiumApp
         {
             stadium.fillContacts();
         }
+
+        // Update Contact data when click update button
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtName.Text) && string.IsNullOrEmpty(txtSurname.Text) && string.IsNullOrEmpty(txtPhone.Text))
+            {
+                MessageBox.Show("Sahələr boş buraxıla bilməz!");
+                return;
+            }
+
+            Fullname fullname = cmbContact.SelectedItem as Fullname;
+            Contacts c = db.Contacts.Find(fullname.Id);
+
+            c.Name = txtName.Text;
+            c.Surname = txtSurname.Text;
+            c.Phone = txtPhone.Text;
+
+            txtName.Text = "";
+            txtSurname.Text = "";
+            txtPhone.Text = "";
+            
+            db.SaveChanges();
+            stadium.fillContacts();
+            btnUpdate.Visibility = Visibility.Hidden;
+
+            MessageBox.Show("Şəxs yeniləndi!");
+        }
+        
     }
 }
 
